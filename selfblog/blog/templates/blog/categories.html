@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block title %} &ndash; Categories {% endblock %}
+
+{% block content %}
+<article>
+  <header>
+    <h1>Categories</h1>
+  </header>
+  <div>
+    <ul class="list">
+      {% for category, count in categories %}
+      <li><a href="{% url 'blog:category' category.slug %}">{{ category.name }}</a> ({{ count }})</li>
+      {% endfor %}
+    </ul>
+  </div>
+</article>
+{% endblock content %}

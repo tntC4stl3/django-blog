@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>tntC4stl3's blog{% block title %}{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="tntC4stl3">
+    {% block styles %}
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic" rel="stylesheet" type="text/css">
+    <link href="{% static "blog/css/style.min.css" %}" rel="stylesheet">
+    <link href="{% static "blog/css/pygments.min.css" %}" rel="stylesheet">
+    <link href="{% static "blog/css/font-awesome.min.css" %}" rel="stylesheet">
+    {% endblock styles %}
+  </head>
+  <body>
+    <aside>
+      <div>
+        <a href="{% url 'blog:index' %}">
+        <img src="{% static "blog/images/gravatar.jpeg" %}" alt="tntC4stl3's blog" title="tntC4stl3's blog">
+        </a>
+        <h1>
+          <a href="{% url 'blog:index' %}">tntC4stl3's blog</a>
+        </h1>
+        <p>Life is a journey</p>
+        <nav>
+          <ul class="list">
+            {% for page in pages %}
+            <li><a href="{% url 'blog:page' page.slug %}">{{ page.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+        <ul class="social">
+					<a class="sc-linkedin" href="https://www.linkedin.com/in/tntc4stl3" target="_blank">
+						<i class="fa fa-linkedin"></i>
+					</a>
+					<a class="sc-github" href="https://github.com/tntc4stl3" target="_blank">
+						<i class="fa fa-github"></i>
+					</a>
+					<a class="sc-envelope-o" href="mailto:blackhumour.gj@gmail.com" target="_blank">
+						<i class="fa fa-envelope-o"></i>
+					</a>
+				</ul>
+      </div>
+    </aside>
+    <main>
+      <nav>
+				<a href="{% url 'blog:index' %}">Home</a>
+        <a href="{% url 'blog:archives' %}">ARCHIVES</a>
+        <a href="{% url 'blog:categories' %}">CATEGORIES</a>
+        <a href="{% url 'blog:tags' %}">TAGS</a>
+      </nav>
+      {% block content %}
+      {% endblock content %}
+
+      <footer>
+        <p>© tntC4stl3 2016</p>
+        <p>Powered by <a href="https://www.djangoproject.com/" target="_blank">Django</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>
+      </footer>
+    </main>
+  </body>
+</html>

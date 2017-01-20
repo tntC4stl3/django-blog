@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+{% for article in articles_list %}
+<article>
+  <header>
+    <h2>
+      <a href="{% url 'blog:detail' article.year article.month article.slug %}">{{ article.title }}</a>
+    </h2>
+    <p>Posted on {{ article.published_time|date:"Y-n-j" }} in <a href="{% url 'blog:category' article.category.slug %}">{{ article.category.name }}</a>
+		{% if article.tags %}
+		&#8226; Tagged with
+		{% for tag in article.tags.all %}
+		<a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a>{% if not forloop.last %},{% endif %}
+		{% endfor %}
+		{% endif %}
+		</p>
+  </header>
+  <div>
+    {{ article.content_html|safe|truncatewords_html:50 }}
+		<a class="btn" href="{% url 'blog:detail' article.year article.month article.slug %}">Continue reading</a>
+  </div>
+	{% if not forloop.last %}
+  <hr />
+	{% endif %}
+</article>
+{% endfor %}
+
+{% if articles_list.has_other_pages %}
+<div class="pagination">
+  {% if articles_list.has_next %}
+  <a class="btn" href="?page={{ articles_list.next_page_number }}">
+    <i class="fa fa-angle-left"></i>
+    Older Posts
+  </a>
+  {% endif %}
+  {% if articles_list.has_previous %}
+  <a class="btn float-right" href="?page={{ articles_list.previous_page_number }}">
+    Newer Posts
+    <i class="fa fa-angle-right"></i>
+  </a>
+  {% endif %}
+</div>
+{% endif %}
+
+{% endblock content %}

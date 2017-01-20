@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block title %} &ndash; Tags {% endblock %}
+
+{% block content %}
+<article>
+  <header>
+    <h1>Tags</h1>
+  </header>
+  <div>
+    <ul class="list">
+      {% for tag, count in tags %}
+      <li><a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a> ({{ count }})</li>
+      {% endfor %}
+    </ul>
+  </div>
+</article>
+{% endblock content %}

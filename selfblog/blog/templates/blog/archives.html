@@ -1,0 +1,19 @@
+{% extends "blog/base.html" %}
+
+{% block title %} &ndash; Archives {% endblock title %}
+
+{% block content %}
+<article>
+  <header>
+    <h1>Archives</h1>
+  </header>
+  <div>
+    <dl>
+      {% for article in articles_list %}
+      <dt>{{ article.published_time|date:"Y-n-j" }}</dt>
+      <dd><a href="{% url 'blog:detail' article.year article.month article.slug %}">{{ article.title }}</a></dd>
+      {% endfor %}
+    </dl>
+  </div>
+</article>
+{% endblock content %}

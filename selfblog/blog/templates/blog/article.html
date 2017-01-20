@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% block title %} &ndash; {{ article.title }}{% endblock %}
+
+{% block content %}
+<article>
+  <header>
+    <h1>{{ article.title }}</h1>
+    <p>Posted on {{ article.published_time|date:"Y-n-j" }} in <a href="{% url 'blog:category' article.category.slug %}">{{ article.category.name }}</a></p>
+  </header>
+  <div>
+    {{ article.content_html|safe }}
+  </div>
+  <div class="tag-cloud">
+    <p>
+      {% for tag in article.tags.all %}
+      <a href="{% url 'blog:tag' tag.slug %}">{{ tag.name }}</a>
+      {% endfor %}
+    </p>
+  </div>
+</article>
+{% endblock content %}
