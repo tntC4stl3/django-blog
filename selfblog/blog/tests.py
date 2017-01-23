@@ -1,4 +1,5 @@
 from datetime import datetime
+from time import sleep
 from django.test import TestCase
 from django.db.models import Q
 from .models import Category, Article, Page, Tag
@@ -134,6 +135,7 @@ class ArchivesViewTest(TestCase):
                                slug='django-test',
                                content='# Django Test',
                                status=0)
+        sleep(3)
         Article.objects.create(category=category,
                                title='Django test1',
                                slug='django-test-1',
