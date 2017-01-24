@@ -10,7 +10,7 @@ env:
   - BLOG_SECRET_KEY="te#!24a*(7#vdhvo%mev=ehj61puq(^z%^1caeiyf$yj2+9+p-"
 
 # command to install dependencies
-install: "pip install -r requirements.txt"
+install: "pip install -r requirements/test.txt"
 
 before_script:
   - "mysql -e  'CREATE DATABASE djblog;'"
