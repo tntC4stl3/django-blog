@@ -27,8 +27,8 @@ class TagsField(forms.CharField):
 
 
 class ArticleForm(forms.ModelForm):
-    tags = TagsField(label=u"Tags", 
-                     help_text=u"Please use comma to separate multiple tags.")
+    tags = TagsField(label="Tags", 
+                     help_text="Please use comma to separate multiple tags.")
 
     class Meta:
         model = Article
